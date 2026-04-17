@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <title>Seera Apps</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #f0f4f8; min-height: 100vh; padding: 40px 24px;
+    }
+    #checkingScreen { text-align: center; padding: 80px 24px; }
+    .spinner-lg {
+      width: 44px; height: 44px;
+      border: 3px solid #dde3ed; border-top-color: #1a3a5c;
+      border-radius: 50%; animation: spin 0.8s linear infinite;
+      margin: 0 auto 20px;
+    }
+    #checkingScreen p { color: #888; font-size: 15px; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .logo { text-align: center; margin-bottom: 32px; }
+    .logo h1 { font-size: 22px; color: #1a3a5c; font-weight: 700; }
+    .logo p { color: #888; font-size: 14px; margin-top: 6px; }
+
+    .toggle-row { display: flex; gap: 8px; margin-bottom: 20px; }
+    .toggle-btn {
+      flex: 1; padding: 10px;
+      border: 1.5px solid #1a3a5c; border-radius: 10px;
+      background: white; color: #1a3a5c;
+      font-size: 13px; font-weight: 600; cursor: pointer;
+    }
+    .toggle-btn.active { background: #1a3a5c; color: white; }
+
+    .section { display: none; }
+    .section.visible { display: block; }
+
+    .url-card {
+      background: white; border-radius: 14px;
+      padding: 24px; box-shadow: 0 1px 6px rgba(0,0,0,0.08);
+    }
+    label { font-size: 13px; color: #888; display: block; margin-bottom: 8px; }
+    input[type=text] {
+      width: 100%; padding: 14px;
+      border: 1px solid #ddd; border-radius: 10px;
+      font-size: 15px; outline: none;
+    }
+    input[type=text]:focus { border-color: #1a3a5c; }
+    .hint { font-size: 12px; color: #aaa; margin-top: 8px; }
+
+    .remember-row {
+      display: flex; align-items: center; gap: 10px; margin-top: 16px;
+    }
+    .remember-row input[type=checkbox] {
+      width: 18px; height: 18px; cursor: pointer; accent-color: #1a3a5c;
+    }
+    .remember-row span { font-size: 14px; color: #555; cursor: pointer; }
+
+    .go-btn {
+      width: 100%; margin-top: 16px; padding: 14px;
+      background: #1a3a5c; color: white; border: none;
+      border-radius: 10px; font-size: 16px; font-weight: 600; cursor: pointer;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+    }
+    .go-btn:active { opacity: 0.85; }
+    .go-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+    .btn-spinner {
+      width: 18px; height: 18px;
+      border: 2px solid rgba(255,255,255,0.4); border-top-color: white;
+      border-radius: 50%; animation: spin 0.7s linear infinite; display: none;
+    }
+    .msg { display: none; margin-top: 14px; padding: 14px 16px; border-radius: 10px; font-size: 14px; }
+    .msg.error   { background: #fff0f0; color: #c0392b; border: 1px solid #f5c6c6; }
+    .msg.warning { background: #fffbea; color: #b7791f; border: 1px solid #f6e05e; }
+    .msg.success { background: #f0fff4; color: #276749; border: 1px solid #9ae6b4; }
+
+    .section-label {
+      font-size: 13px; color: #aaa;
+      text-transform: uppercase; letter-spacing: 1px; margin-bottom: 14px;
+    }
+    .sites-remember {
+      display: flex; align-items: center; gap: 10px;
+      margin-bottom: 16px; padding: 14px 16px;
+      background: white; border-radius: 10px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    }
+    .sites-remember input[type=checkbox] {
+      width: 18px; height: 18px; cursor: pointer; accent-color: #1a3a5c;
+    }
+    .sites-remember span { font-size: 14px; color: #555; }
+    .site-card {
+      background: white; border-radius: 14px;
+      padding: 18px 20px; margin-bottom: 12px;
+      display: flex; align-items: center; gap: 16px;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.08);
+      text-decoration: none; cursor: pointer; border: none; width: 100%;
+    }
+    .site-card:active { background: #f5f8ff; }
+    .icon {
+      width: 46px; height: 46px; border-radius: 12px; background: #e8f0fe;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px; flex-shrink: 0;
+    }
+    .info h3 { font-size: 15px; color: #1a3a5c; font-weight: 600; }
+    .info p  { font-size: 13px; color: #888; margin-top: 2px; }
+    .arrow { margin-left: auto; color: #ccc; font-size: 22px; flex-shrink: 0; }
+  </style>
+</head>
+<body>
+
+  <!-- CHECKING SCREEN -->
+  <div id="checkingScreen">
+    <div class="spinner-lg"></div>
+    <p>Loading...</p>
+  </div>
+
+  <!-- MAIN UI -->
+  <div id="mainUI" style="display:none;">
+
+    <div class="logo">
+      <h1>Seera Apps</h1>
+      <p>Select or enter your hospital site</p>
+    </div>
+
+    <div class="toggle-row">
+      <button class="toggle-btn active" onclick="showSection('url', this)">Enter URL</button>
+      <button class="toggle-btn" onclick="showSection('sites', this)">Available Sites</button>
+    </div>
+
+    <!-- ENTER URL -->
+    <div class="section visible" id="section-url">
+      <div class="url-card">
+        <label for="siteUrl">Hospital site URL</label>
+        <input type="text" id="siteUrl" placeholder="https://site-name.com" />
+        <p class="hint">Enter URL</p>
+        <div class="remember-row">
+          <input type="checkbox" id="rememberUrl" checked />
+          <span onclick="document.getElementById('rememberUrl').click()">Remember this site & keep me logged in</span>
+        </div>
+        <button class="go-btn" id="goBtn" onclick="goToSite()">
+          <span id="btnText">Open App →</span>
+          <div class="btn-spinner" id="btnSpinner"></div>
+        </button>
+        <div class="msg" id="msgBox"></div>
+      </div>
+    </div>
+
+    <!-- AVAILABLE SITES -->
+    <div class="section" id="section-sites">
+      <div class="sites-remember">
+        <input type="checkbox" id="rememberSite" checked />
+        <span onclick="document.getElementById('rememberSite').click()">Remember this site & keep me logged in</span>
+      </div>
+      <p class="section-label">Available Sites</p>
+
+      <button class="site-card" onclick="openSite('https://kfsh-dammam-asm.seeraarabia.com')">
+        <div class="icon">🏥</div>
+        <div class="info"><h3>KFSH Dammam</h3><p>King Fahad Specialist Hospital</p></div>
+        <div class="arrow">›</div>
+      </button>
+
+      <button class="site-card" onclick="openSite('http://35.252.41.128')">
+        <div class="icon">🏥</div>
+        <div class="info"><h3>Seera Unified</h3><p>Seera Unified</p></div>
+        <div class="arrow">›</div>
+      </button>
+
+      <button class="site-card" onclick="openSite('https://imanrdh-seeraasm.seeraarabia.com')">
+        <div class="icon">🏥</div>
+        <div class="info"><h3>Iman RDH</h3><p>Iman Rehab & Diagnostic Hospital</p></div>
+        <div class="arrow">›</div>
+      </button>
+
+      <!-- ADD NEW SITE: copy button block above, update onclick origin + h3 + p -->
+    </div>
+
+  </div>
+
+  <script>
+    const STORAGE_KEY  = 'seera_last_site';
+    const REMEMBER_KEY = 'seera_remember_me';
+
+    // On launch — if remember me, skip selector and go to site's entry page
+    (function() {
+      const remember  = localStorage.getItem(REMEMBER_KEY) === 'true';
+      const lastSite  = localStorage.getItem(STORAGE_KEY);
+      if (remember && lastSite) {
+        // Go to Frappe site's entry page — it will check session same-origin
+        window.location.href = lastSite + '/entry';
+        return;
+      }
+      showMain();
+    })();
+
+    function showMain() {
+      document.getElementById('checkingScreen').style.display = 'none';
+      document.getElementById('mainUI').style.display = 'block';
+    }
+
+    function showSection(name, btn) {
+      document.querySelectorAll('.section').forEach(s => s.classList.remove('visible'));
+      document.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById('section-' + name).classList.add('visible');
+      btn.classList.add('active');
+    }
+
+    function savePreference(origin) {
+      const rememberUrl  = document.getElementById('rememberUrl');
+      const rememberSite = document.getElementById('rememberSite');
+      const checked = (rememberUrl && rememberUrl.closest('.section.visible'))
+                        ? rememberUrl.checked
+                        : rememberSite ? rememberSite.checked : false;
+      if (checked) {
+        localStorage.setItem(REMEMBER_KEY, 'true');
+        localStorage.setItem(STORAGE_KEY, origin);
+      } else {
+        localStorage.removeItem(REMEMBER_KEY);
+        localStorage.removeItem(STORAGE_KEY);
+      }
+    }
+
+    function openSite(origin) {
+      savePreference(origin);
+      window.location.href = origin + '/entry';
+    }
+
+    function normalizeUrl(raw) {
+      raw = raw.trim();
+      if (!raw) return null;
+      if (!/^https?:\/\//i.test(raw)) raw = 'https://' + raw;
+      try {
+        const u = new URL(raw);
+        u.pathname = '/entry';
+        return u.toString();
+      } catch(e) { return null; }
+    }
+
+    function showMsg(type, text) {
+      const box = document.getElementById('msgBox');
+      box.className = 'msg ' + type;
+      box.textContent = text;
+      box.style.display = 'block';
+    }
+    function hideMsg() { document.getElementById('msgBox').style.display = 'none'; }
+
+    function setLoading(on) {
+      document.getElementById('goBtn').disabled = on;
+      document.getElementById('btnSpinner').style.display = on ? 'block' : 'none';
+      document.getElementById('btnText').textContent = on ? 'Checking...' : 'Open App →';
+    }
+
+    function goToSite() {
+      const raw = document.getElementById('siteUrl').value;
+      hideMsg();
+      if (!raw.trim()) { showMsg('error', '⚠️ Please enter a URL first.'); return; }
+      const url = normalizeUrl(raw);
+      if (!url) { showMsg('error', '⚠️ Invalid URL format. Please check and try again.'); return; }
+
+      setLoading(true);
+      showMsg('warning', '🔍 Checking site...');
+
+      fetch(url.replace('/entry', '/asm_app/'), {
+        method: 'HEAD', mode: 'no-cors', signal: AbortSignal.timeout(6000)
+      })
+      .then(() => {
+        savePreference(new URL(url).origin);
+        showMsg('success', '✅ Site found! Opening...');
+        setTimeout(() => { window.location.href = url; }, 600);
+      })
+      .catch(err => {
+        setLoading(false);
+        if (err.name === 'TimeoutError' || err.name === 'AbortError') {
+          showMsg('error', '⏱️ Request timed out. No site found at this URL.');
+        } else {
+          showMsg('error', '❌ No site found at this URL. Please check and try again.');
+        }
+      });
+    }
+
+    document.getElementById('siteUrl').addEventListener('keydown', e => {
+      if (e.key === 'Enter') goToSite();
+    });
+    document.getElementById('siteUrl').addEventListener('input', () => {
+      hideMsg(); setLoading(false);
+    });
+  </script>
+</body>
+</html>
