@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy — Seera ASM</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --brand: #1a56db;
+      --brand-dark: #1341b0;
+      --text: #1e293b;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --bg: #f8fafc;
+      --white: #ffffff;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    /* ── Top bar ── */
+    .topbar {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 40px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    }
+
+    .topbar-logo {
+      width: 28px;
+      height: 28px;
+      background: var(--brand);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .topbar-logo svg { width: 16px; height: 16px; fill: #fff; }
+
+    .topbar-name {
+      font-weight: 700;
+      font-size: 15px;
+      color: var(--text);
+      letter-spacing: -0.2px;
+    }
+
+    .topbar-sep {
+      color: var(--border);
+      font-size: 18px;
+      font-weight: 300;
+      margin: 0 4px;
+    }
+
+    .topbar-page {
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    /* ── Layout ── */
+    .layout {
+      display: flex;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+      gap: 48px;
+      align-items: flex-start;
+    }
+
+    /* ── Sidebar TOC ── */
+    .sidebar {
+      width: 220px;
+      flex-shrink: 0;
+      position: sticky;
+      top: 80px;
+    }
+
+    .sidebar-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    .sidebar nav a {
+      display: block;
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      padding: 5px 10px;
+      border-left: 2px solid var(--border);
+      transition: color 0.15s, border-color 0.15s;
+      line-height: 1.4;
+      margin-bottom: 2px;
+    }
+
+    .sidebar nav a:hover,
+    .sidebar nav a.active {
+      color: var(--brand);
+      border-left-color: var(--brand);
+    }
+
+    /* ── Main content ── */
+    .content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    /* ── Page header ── */
+    .page-header {
+      margin-bottom: 40px;
+      padding-bottom: 28px;
+      border-bottom: 2px solid var(--border);
+    }
+
+    .page-header .badge {
+      display: inline-block;
+      background: var(--brand);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 3px;
+      margin-bottom: 14px;
+    }
+
+    .page-header h1 {
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .page-header .meta {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    /* ── Sections ── */
+    .section {
+      margin-bottom: 52px;
+      scroll-margin-top: 90px;
+    }
+
+    .section h2 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section h2 .num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      background: var(--brand);
+      color: #fff;
+      border-radius: 50%;
+      font-size: 11px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .section h3 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text);
+      margin: 22px 0 8px;
+    }
+
+    .section h4 {
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      color: var(--muted);
+      margin: 18px 0 8px;
+    }
+
+    .section p {
+      font-size: 14.5px;
+      color: #374151;
+      margin-bottom: 12px;
+    }
+
+    .section ul, .section ol {
+      padding-left: 20px;
+      margin-bottom: 14px;
+    }
+
+    .section li {
+      font-size: 14.5px;
+      color: #374151;
+      margin-bottom: 8px;
+    }
+
+    .section li strong { color: var(--text); }
+
+    /* ── Contact box ── */
+    .contact-box {
+      background: linear-gradient(135deg, var(--brand) 0%, var(--brand-dark) 100%);
+      border-radius: 10px;
+      padding: 32px 36px;
+      margin-top: 12px;
+      color: #fff;
+    }
+
+    .contact-box h2 {
+      color: #fff;
+      border: none;
+      padding: 0;
+      margin-bottom: 10px;
+      font-size: 1.1rem;
+    }
+
+    .contact-box p {
+      color: rgba(255,255,255,0.85);
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .contact-box a {
+      color: #fff;
+      font-weight: 600;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    /* ── Footer ── */
+    footer {
+      text-align: center;
+      padding: 28px;
+      font-size: 12px;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      background: var(--white);
+    }
+
+    /* ── Mobile ── */
+    @media (max-width: 768px) {
+      .topbar { padding: 12px 20px; }
+      .layout { flex-direction: column; padding: 28px 16px 60px; gap: 28px; }
+      .sidebar { width: 100%; position: static; }
+      .sidebar nav { display: flex; flex-wrap: wrap; gap: 6px; }
+      .sidebar nav a { border-left: none; border-bottom: 2px solid var(--border); padding: 4px 8px; font-size: 12px; }
+      .sidebar nav a:hover, .sidebar nav a.active { border-bottom-color: var(--brand); }
+      .page-header h1 { font-size: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top bar -->
+  <div class="topbar">
+    <div class="topbar-logo">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2L2 7v10l10 5 10-5V7L12 2zm0 2.18L20 8.5v7L12 19.82 4 15.5v-7L12 4.18z"/>
+      </svg>
+    </div>
+    <span class="topbar-name">Seera ASM</span>
+    <span class="topbar-sep">|</span>
+    <span class="topbar-page">Privacy Policy</span>
+  </div>
+
+  <!-- Layout -->
+  <div class="layout">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-label">On this page</div>
+      <nav id="toc">
+        <a href="#interpretation">1. Interpretation</a>
+        <a href="#collecting">2. Collecting Data</a>
+        <a href="#retention">3. Retention</a>
+        <a href="#transfer">4. Transfer</a>
+        <a href="#delete">5. Delete Your Data</a>
+        <a href="#disclosure">6. Disclosure</a>
+        <a href="#security">7. Security</a>
+        <a href="#children">8. Children's Privacy</a>
+        <a href="#links">9. External Links</a>
+        <a href="#changes">10. Policy Changes</a>
+        <a href="#contact">11. Contact Us</a>
+      </nav>
+    </aside>
+
+    <!-- Main -->
+    <main class="content">
+
+      <div class="page-header">
+        <div class="badge">Seera ASM</div>
+        <h1>Privacy Policy</h1>
+        <p class="meta">Last updated: August 28, 2025</p>
+      </div>
+
+      <div class="section">
+        <p>This Privacy Policy describes Our policies and procedures on the collection, use and disclosure of Your information when You use the Service and tells You about Your privacy rights and how the law protects You.</p>
+        <p>We use Your Personal data to provide and improve the Service. By using the Service, You agree to the collection and use of information in accordance with this Privacy Policy.</p>
+      </div>
+
+      <!-- 1 -->
+      <div class="section" id="interpretation">
+        <h2><span class="num">1</span> Interpretation and Definitions</h2>
+        <h3>Interpretation</h3>
+        <p>The words of which the initial letter is capitalized have meanings defined under the following conditions. The following definitions shall have the same meaning regardless of whether they appear in singular or in plural.</p>
+        <h3>Definitions</h3>
+        <p>For the purposes of this Privacy Policy:</p>
+        <ul>
+          <li><strong>Account</strong> means a unique account created for You to access our Service or parts of our Service.</li>
+          <li><strong>Affiliate</strong> means an entity that controls, is controlled by or is under common control with a party, where "control" means ownership of 50% or more of the shares, equity interest or other securities entitled to vote for election of directors or other managing authority.</li>
+          <li><strong>Application</strong> refers to Seera ASM - Al Jouf Cluster, the software program provided by the Company.</li>
+          <li><strong>Company</strong> (referred to as either "the Company", "We", "Us" or "Our") refers to Seera ASM - Al Jouf Cluster.</li>
+          <li><strong>Country</strong> refers to: Saudi Arabia</li>
+          <li><strong>Device</strong> means any device that can access the Service such as a computer, a cellphone or a digital tablet.</li>
+          <li><strong>Personal Data</strong> is any information that relates to an identified or identifiable individual.</li>
+          <li><strong>Service</strong> refers to the Application.</li>
+          <li><strong>Service Provider</strong> means any natural or legal person who processes the data on behalf of the Company to facilitate the Service, provide the Service on behalf of the Company, perform services related to the Service or assist the Company in analyzing how the Service is used.</li>
+          <li><strong>Usage Data</strong> refers to data collected automatically, either generated by the use of the Service or from the Service infrastructure itself (for example, the duration of a page visit).</li>
+          <li><strong>You</strong> means the individual accessing or using the Service, or the company or other legal entity on behalf of which such individual is accessing or using the Service, as applicable.</li>
+        </ul>
+      </div>
+
+      <!-- 2 -->
+      <div class="section" id="collecting">
+        <h2><span class="num">2</span> Collecting and Using Your Personal Data</h2>
+        <h3>Types of Data Collected</h3>
+        <h4>Personal Data</h4>
+        <p>While using Our Service, We may ask You to provide Us with certain personally identifiable information. This may include, but is not limited to:</p>
+        <ul>
+          <li>Email address</li>
+          <li>First name and last name</li>
+          <li>Address, State, Province, ZIP/Postal code, City</li>
+          <li>Usage Data</li>
+        </ul>
+        <h4>Usage Data</h4>
+        <p>Usage Data is collected automatically when using the Service. It may include information such as Your Device's IP address, browser type, browser version, the pages of our Service that You visit, the time and date of Your visit, the time spent on those pages, unique device identifiers and other diagnostic data.</p>
+        <p>When You access the Service through a mobile device, We may also collect the type of mobile device, Your mobile device unique ID, mobile operating system, mobile browser type, and other diagnostic data.</p>
+        <h4>Information Collected while Using the Application</h4>
+        <p>While using Our Application, in order to provide features of Our Service, We may collect, with Your prior permission:</p>
+        <ul>
+          <li>Pictures and other information from your Device's camera and photo library</li>
+        </ul>
+        <p>We use this information to provide and improve Our Service. The information may be uploaded to the Company's servers or stored on Your device. You can enable or disable access to this information at any time through Your Device settings.</p>
+        <h3>Use of Your Personal Data</h3>
+        <ul>
+          <li><strong>To provide and maintain our Service</strong>, including to monitor the usage of our Service.</li>
+          <li><strong>To manage Your Account:</strong> to manage Your registration as a user of the Service.</li>
+          <li><strong>For the performance of a contract:</strong> the development, compliance and undertaking of the purchase contract for products or services You have purchased through the Service.</li>
+          <li><strong>To contact You</strong> by email, telephone calls, SMS, or other equivalent forms of electronic communication regarding updates or informative communications related to the Service.</li>
+          <li><strong>To provide You</strong> with news, special offers and general information about other goods, services and events which we offer that are similar to those you have already purchased or enquired about.</li>
+          <li><strong>To manage Your requests:</strong> To attend and manage Your requests to Us.</li>
+          <li><strong>For business transfers:</strong> We may use Your information to evaluate or conduct a merger, divestiture, restructuring, reorganization, dissolution, or other sale or transfer of some or all of Our assets.</li>
+          <li><strong>For other purposes:</strong> data analysis, identifying usage trends, determining the effectiveness of our promotional campaigns and to evaluate and improve our Service.</li>
+        </ul>
+        <h3>Sharing Your Personal Data</h3>
+        <ul>
+          <li><strong>With Service Providers:</strong> to monitor and analyze the use of our Service and to contact You.</li>
+          <li><strong>For business transfers:</strong> in connection with any merger, sale of Company assets, financing, or acquisition of all or a portion of Our business.</li>
+          <li><strong>With Affiliates:</strong> in which case we will require those affiliates to honor this Privacy Policy.</li>
+          <li><strong>With business partners:</strong> to offer You certain products, services or promotions.</li>
+          <li><strong>With other users:</strong> when You share personal information in public areas, such information may be viewed by all users.</li>
+          <li><strong>With Your consent:</strong> We may disclose Your personal information for any other purpose with Your consent.</li>
+        </ul>
+      </div>
+
+      <!-- 3 -->
+      <div class="section" id="retention">
+        <h2><span class="num">3</span> Retention of Your Personal Data</h2>
+        <p>The Company will retain Your Personal Data only for as long as is necessary for the purposes set out in this Privacy Policy. We will retain and use Your Personal Data to the extent necessary to comply with our legal obligations, resolve disputes, and enforce our legal agreements and policies.</p>
+        <p>Usage Data is generally retained for a shorter period of time, except when this data is used to strengthen security or improve the functionality of Our Service, or We are legally obligated to retain this data for longer periods.</p>
+      </div>
+
+      <!-- 4 -->
+      <div class="section" id="transfer">
+        <h2><span class="num">4</span> Transfer of Your Personal Data</h2>
+        <p>Your information, including Personal Data, is processed at the Company's operating offices and in any other places where the parties involved in the processing are located. This information may be transferred to — and maintained on — computers located outside of Your state, province, country or other governmental jurisdiction where the data protection laws may differ from those in Your jurisdiction.</p>
+        <p>Your consent to this Privacy Policy followed by Your submission of such information represents Your agreement to that transfer.</p>
+        <p>The Company will take all steps reasonably necessary to ensure that Your data is treated securely and in accordance with this Privacy Policy, and no transfer of Your Personal Data will take place to an organization or country unless there are adequate controls in place.</p>
+      </div>
+
+      <!-- 5 -->
+      <div class="section" id="delete">
+        <h2><span class="num">5</span> Delete Your Personal Data</h2>
+        <p>You have the right to delete or request that We assist in deleting the Personal Data that We have collected about You.</p>
+        <p>Our Service may give You the ability to delete certain information about You from within the Service. You may update, amend, or delete Your information at any time by signing in to Your Account and visiting the account settings section that allows you to manage Your personal information. You may also contact Us to request access to, correct, or delete any personal information that You have provided to Us.</p>
+        <p>Please note, however, that We may need to retain certain information when we have a legal obligation or lawful basis to do so.</p>
+      </div>
+
+      <!-- 6 -->
+      <div class="section" id="disclosure">
+        <h2><span class="num">6</span> Disclosure of Your Personal Data</h2>
+        <h3>Business Transactions</h3>
+        <p>If the Company is involved in a merger, acquisition or asset sale, Your Personal Data may be transferred. We will provide notice before Your Personal Data is transferred and becomes subject to a different Privacy Policy.</p>
+        <h3>Law Enforcement</h3>
+        <p>Under certain circumstances, the Company may be required to disclose Your Personal Data if required to do so by law or in response to valid requests by public authorities (e.g. a court or a government agency).</p>
+        <h3>Other Legal Requirements</h3>
+        <p>The Company may disclose Your Personal Data in the good faith belief that such action is necessary to:</p>
+        <ul>
+          <li>Comply with a legal obligation</li>
+          <li>Protect and defend the rights or property of the Company</li>
+          <li>Prevent or investigate possible wrongdoing in connection with the Service</li>
+          <li>Protect the personal safety of Users of the Service or the public</li>
+          <li>Protect against legal liability</li>
+        </ul>
+      </div>
+
+      <!-- 7 -->
+      <div class="section" id="security">
+        <h2><span class="num">7</span> Security of Your Personal Data</h2>
+        <p>The security of Your Personal Data is important to Us, but remember that no method of transmission over the Internet, or method of electronic storage is 100% secure. While We strive to use commercially acceptable means to protect Your Personal Data, We cannot guarantee its absolute security.</p>
+      </div>
+
+      <!-- 8 -->
+      <div class="section" id="children">
+        <h2><span class="num">8</span> Children's Privacy</h2>
+        <p>Our Service does not address anyone under the age of 13. We do not knowingly collect personally identifiable information from anyone under the age of 13. If You are a parent or guardian and You are aware that Your child has provided Us with Personal Data, please contact Us.</p>
+        <p>If We become aware that We have collected Personal Data from anyone under the age of 13 without verification of parental consent, We take steps to remove that information from Our servers.</p>
+        <p>If We need to rely on consent as a legal basis for processing Your information and Your country requires consent from a parent, We may require Your parent's consent before We collect and use that information.</p>
+      </div>
+
+      <!-- 9 -->
+      <div class="section" id="links">
+        <h2><span class="num">9</span> Links to Other Websites</h2>
+        <p>Our Service may contain links to other websites that are not operated by Us. If You click on a third party link, You will be directed to that third party's site. We strongly advise You to review the Privacy Policy of every site You visit.</p>
+        <p>We have no control over and assume no responsibility for the content, privacy policies or practices of any third party sites or services.</p>
+      </div>
+
+      <!-- 10 -->
+      <div class="section" id="changes">
+        <h2><span class="num">10</span> Changes to this Privacy Policy</h2>
+        <p>We may update Our Privacy Policy from time to time. We will notify You of any changes by posting the new Privacy Policy on this page.</p>
+        <p>We will let You know via email and/or a prominent notice on Our Service, prior to the change becoming effective and update the "Last updated" date at the top of this Privacy Policy.</p>
+        <p>You are advised to review this Privacy Policy periodically for any changes. Changes to this Privacy Policy are effective when they are posted on this page.</p>
+      </div>
+
+      <!-- 11 -->
+      <div class="section" id="contact">
+        <div class="contact-box">
+          <h2>11. Contact Us</h2>
+          <p>If you have any questions about this Privacy Policy, you can contact us:</p>
+          <p>By email: <a href="mailto:support@seeraarabia.com">support@seeraarabia.com</a></p>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <footer>
+    &copy; 2025 Seera ASM &mdash; Al Jouf Cluster. All rights reserved.
+  </footer>
+
+  <!-- Sidebar active link highlight on scroll -->
+  <script>
+    const sections = document.querySelectorAll('.section[id], .contact-box[id]');
+    const links = document.querySelectorAll('#toc a');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          links.forEach(l => l.classList.remove('active'));
+          const active = document.querySelector('#toc a[href="#' + entry.target.id + '"]');
+          if (active) active.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-20% 0px -70% 0px' });
+
+    sections.forEach(s => observer.observe(s));
+  </script>
+
+</body>
+</html>
